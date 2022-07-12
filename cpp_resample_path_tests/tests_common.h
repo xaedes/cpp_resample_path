@@ -12,11 +12,11 @@
 #define ASSERT2(condition, value) if(!(condition)) { LOG2(#condition, value); return -1; }
 #define ASSERT3(condition, value, value2) if(!(condition)) { LOG3(#condition, value, value2); return -1; }
 
-template<class T, int N>
+template<class T, std::size_t N>
 std::ostream& operator<<(std::ostream& os, const std::array<T, N>& arr)
 {
     os << "[";
-    for (int i = 0; i < arr.size(); ++i)
+    for (std::size_t i = 0; i < arr.size(); ++i)
     {
         if (i > 0) 
         {
@@ -33,7 +33,7 @@ template<class... Args>
 std::ostream& operator<<(std::ostream& os, const std::vector<Args...>& vec)
 {
     os << "[";
-    for (int i = 0; i < vec.size(); ++i)
+    for (std::size_t i = 0; i < vec.size(); ++i)
     {
         if (i > 0) 
         {

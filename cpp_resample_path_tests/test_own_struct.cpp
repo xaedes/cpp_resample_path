@@ -8,24 +8,28 @@
 
 #include "tests_common.h"
 
+namespace ns_test_own_struct {
 
-struct MyGeoStruct
-{
-    double latitude;
-    double longitude;
-    double altitude;
-};
+    struct MyGeoStruct
+    {
+        double latitude;
+        double longitude;
+        double altitude;
+    };
 
-struct MyVecStruct
-{
-    double x;
-    double y;
-    double z;
-};
+    struct MyVecStruct
+    {
+        double x;
+        double y;
+        double z;
+    };
+
+} // namespace ns_test_own_struct
 
 
 int test_own_struct(int argc, char* argv[])
 {
+    using namespace ns_test_own_struct;
 
     auto ReadGeo = [](auto inp, auto& arr) {
         arr[0] = inp.latitude;

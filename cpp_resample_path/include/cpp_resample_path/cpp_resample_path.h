@@ -151,12 +151,12 @@ namespace cpp_resample_path {
         if (end < start) end = start;
         F output_length = end - start;
 
-        // std::cout << "----------------------------------------------------\n";
-        // std::cout << "input_size: " << input_size << "\n";
-        // std::cout << "start: " << start << "\n";
-        // std::cout << "end: " << end << "\n";
-        // std::cout << "output_length: " << output_length << "\n";
-        // std::cout << "resample_interval: " << resample_interval << "\n";
+        std::cout << "----------------------------------------------------\n";
+        std::cout << "input_size: " << input_size << "\n";
+        std::cout << "start: " << start << "\n";
+        std::cout << "end: " << end << "\n";
+        std::cout << "output_length: " << output_length << "\n";
+        std::cout << "resample_interval: " << resample_interval << "\n";
 
         auto CeilOrFloor = [true_ceil_false_floor](auto v)
         {
@@ -165,18 +165,18 @@ namespace cpp_resample_path {
 
         I num_output_items = 1 + static_cast<I>(CeilOrFloor(DivFOr(output_length, resample_interval, 0)));
 
-        // std::cout << "num_output_items: " << num_output_items << "\n";
+        std::cout << "num_output_items: " << num_output_items << "\n";
 
         V resampled_arr;
         U resampled_output;
         F* resampled = resampled_arr.data();
 
         I segment = 0;
-        // std::cout << "------------\n";
+        std::cout << "------------\n";
         for (I i=0; i<num_output_items; ++i)
         {
             F here = i * resample_interval;
-            // std::cout << "here: " << here<< "\n";
+            std::cout << "here: " << here<< "\n";
             while (
                 (segment+1 < input_size-1)
                  && (here > cumlen[segment+1])
@@ -184,10 +184,10 @@ namespace cpp_resample_path {
             {
                 ++segment;
             }
-            // std::cout << "segment: " << segment<< "\n";
-            // std::cout << "cumlen[segment]: " << cumlen[segment]<< "\n";
-            // std::cout << "cumlen[segment+1]: " << cumlen[segment+1]<< "\n";
-            // std::cout << "distances[segment]: " << distances[segment]<< "\n";
+            std::cout << "segment: " << segment<< "\n";
+            std::cout << "cumlen[segment]: " << cumlen[segment]<< "\n";
+            std::cout << "cumlen[segment+1]: " << cumlen[segment+1]<< "\n";
+            std::cout << "distances[segment]: " << distances[segment]<< "\n";
             F dist = distances[segment];
             F here_in_seg = here - cumlen[segment];
             if ((true_extrapolate_false_border == false) && (here_in_seg > dist)) 
@@ -195,10 +195,10 @@ namespace cpp_resample_path {
                 here_in_seg = dist;
             }
 
-            // std::cout << "here_in_seg: " << here_in_seg<< "\n";
+            std::cout << "here_in_seg: " << here_in_seg<< "\n";
             // F k = DivFOr(here_in_seg, dist, 1);
             
-            // std::cout << "k: " << k<< "\n";
+            std::cout << "k: " << k<< "\n";
 
             const F* input_segment = input[segment];
             const F* dir_segment = dirs[segment];
@@ -206,9 +206,9 @@ namespace cpp_resample_path {
             for (I j=0; j<N; ++j)
             {
                 resampled[j] = input_segment[j] + dir_segment[j] * here_in_seg;
-                // std::cout << "input_segment[j]: " << input_segment[j]<< "\n";
-                // std::cout << "dir_segment[j]: " << dir_segment[j]<< "\n";
-                // std::cout << "resampled[j]: " << resampled[j]<< "\n";
+                std::cout << "input_segment[j]: " << input_segment[j]<< "\n";
+                std::cout << "dir_segment[j]: " << dir_segment[j]<< "\n";
+                std::cout << "resampled[j]: " << resampled[j]<< "\n";
             }
             make_output(resampled, resampled_output);
             output_path.push_back(resampled_output);

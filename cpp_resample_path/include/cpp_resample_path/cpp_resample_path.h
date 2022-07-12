@@ -93,6 +93,21 @@ namespace cpp_resample_path {
 
         const auto input_size = input_path.size();
 
+        if (input_size == 0)
+        {
+            return 0;
+        }
+
+        if (input_size == 1)
+        {
+            V input_array;
+            U output;
+            read_input(input_path.front(), input_array);
+            make_output(input_array, output);
+            output_path.push_back(output);
+            return 1;
+        }
+
         using FCPtr = const F*;
         using FPtr = F*;
 

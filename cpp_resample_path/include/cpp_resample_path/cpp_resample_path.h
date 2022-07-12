@@ -100,17 +100,17 @@ namespace cpp_resample_path {
         using FCPtr = const F*;
         using FPtr = F*;
 
-        static std::vector<V> s_input_array;
-        static std::vector<FCPtr> s_input;
+        static thread_local std::vector<V> s_input_array;
+        static thread_local std::vector<FCPtr> s_input;
 
-        static std::vector<V> s_diff_arrs;
-        static std::vector<FPtr> s_diffs;
+        static thread_local std::vector<V> s_diff_arrs;
+        static thread_local std::vector<FPtr> s_diffs;
 
-        static std::vector<V> s_dir_arrs;
-        static std::vector<FPtr> s_dirs;
+        static thread_local std::vector<V> s_dir_arrs;
+        static thread_local std::vector<FPtr> s_dirs;
 
-        static std::vector<F> s_cumlen;
-        static std::vector<F> s_distances;
+        static thread_local std::vector<F> s_cumlen;
+        static thread_local std::vector<F> s_distances;
 
         s_input_array.clear();
         s_input.clear();

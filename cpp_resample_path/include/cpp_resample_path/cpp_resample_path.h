@@ -3,6 +3,7 @@
 #include <type_traits>
 #include <vector>
 #include <array>
+#include <cmath>
 
 namespace cpp_resample_path {
 

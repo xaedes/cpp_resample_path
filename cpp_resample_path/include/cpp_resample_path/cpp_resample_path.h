@@ -152,6 +152,7 @@ namespace cpp_resample_path {
         F output_length = end - start;
 
         std::cout << "----------------------------------------------------\n";
+        std::cout << "eps: " << eps << "\n";
         std::cout << "input_size: " << input_size << "\n";
         std::cout << "start: " << start << "\n";
         std::cout << "end: " << end << "\n";

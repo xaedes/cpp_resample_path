@@ -13,32 +13,32 @@ A small library to resample paths
 ## Example
 
 ```cpp
-    struct MyVecStruct
-    {
-        double x;
-        double y;
-        double z;
-    };
+struct MyVecStruct
+{
+    double x;
+    double y;
+    double z;
+};
 
-    auto ReadVec = [](auto inp, auto& arr) {
-        arr[0] = inp.x;
-        arr[1] = inp.y;
-        arr[2] = inp.z;
-    };
-    auto WriteVec = [](auto arr, auto& out) {
-        out.x = arr[0];
-        out.y = arr[1];
-        out.z = arr[2];
-    };
+auto ReadVec = [](auto inp, auto& arr) {
+    arr[0] = inp.x;
+    arr[1] = inp.y;
+    arr[2] = inp.z;
+};
+auto WriteVec = [](auto arr, auto& out) {
+    out.x = arr[0];
+    out.y = arr[1];
+    out.z = arr[2];
+};
 
-    std::vector<MyVecStruct> input_path = {MyVecStruct{0, 0, 100}, MyVecStruct{10, 0, 100}};
-    std::vector<MyVecStruct> output_path;
-    cpp_resample_path::resample<3,double>(
-        input_path,
-        0.1,
-        output_path,
-        ReadVec, WriteVec
-    );
+std::vector<MyVecStruct> input_path = {MyVecStruct{0, 0, 100}, MyVecStruct{10, 0, 100}};
+std::vector<MyVecStruct> output_path;
+cpp_resample_path::resample<3,double>(
+    input_path,
+    0.1,
+    output_path,
+    ReadVec, WriteVec
+);
 
-    // output_path is now {{0, 0, 100}, {0.1, 0, 100}, {0.2, 0, 100}, ...}
+// output_path is now {{0, 0, 100}, {0.1, 0, 100}, {0.2, 0, 100}, ...}
 ```

@@ -65,18 +65,7 @@ namespace cpp_resample_path {
         auto Length = [&Length2](const F* ptr){
             return sqrt(Length2(ptr));
         };
-        auto Distance2 = [](const F* from, const F* to)
-        {
-            F result = 0;
-            for(I i=0; i<N; ++i) {
-                F d = to[i] - from[i];
-                result += d*d;
-            }
-            return result;
-        };
-        auto Distance = [&Distance2](const F* from, const F* to){
-            return sqrt(Distance2(from, to));
-        };
+
         auto SubV = [](const F* a, const F* b, F* result){
             for(I i=0; i<N; ++i) {
                 result[i] = a[i] - b[i];

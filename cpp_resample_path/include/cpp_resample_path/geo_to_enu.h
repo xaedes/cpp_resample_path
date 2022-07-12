@@ -17,7 +17,7 @@ namespace cpp_resample_path {
         double d_lon = geo_lon - geo_lon_home;
         double d_lat = geo_lat - geo_lat_home;
         ENU_y_meter = d_lat * d2r * r_earth;
-        ENU_x_meter = d_lon * d2r * r_earth * std::cos(gps_t_lat * d2r);
+        ENU_x_meter = d_lon * d2r * r_earth * std::cos(geo_lat_home * d2r);
     };
 
 } // namespace cpp_resample_path

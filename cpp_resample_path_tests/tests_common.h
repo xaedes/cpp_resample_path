@@ -4,6 +4,7 @@
 #include <sstream>
 #include <vector>
 #include <array>
+#include <cmath>
 #include <iomanip>
 
 #define LOG(msg) std::cout << "failed: " << (msg) << "\n";
@@ -12,7 +13,7 @@
 #define ASSERT(condition) if(!(condition)) { LOG(#condition); return -1; }
 #define ASSERT2(condition, value) if(!(condition)) { LOG2(#condition, value); return -1; }
 #define ASSERT3(condition, value, value2) if(!(condition)) { LOG3(#condition, value, value2); return -1; }
-
+#define APPROX_EQUAL(a, b) (std::abs(a-b) <= 1e-6)
 template<class T, std::size_t N>
 std::ostream& operator<<(std::ostream& os, const std::array<T, N>& arr)
 {

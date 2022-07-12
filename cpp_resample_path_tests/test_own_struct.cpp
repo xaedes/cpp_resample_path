@@ -5,6 +5,7 @@
 #include <iostream>
 
 #include <cpp_resample_path/cpp_resample_path.h>
+#include <cpp_resample_path/geo_to_enu.h>
 
 #include "tests_common.h"
 
@@ -81,12 +82,45 @@ int test_own_struct(int argc, char* argv[])
             ReadVec, WriteVec
         );
         ASSERT(output_path.size() == 2);
-        ASSERT(output_path[0].x == 0);
-        ASSERT(output_path[0].y == 0);
-        ASSERT(output_path[0].z == 100);
-        ASSERT(output_path[1].x == 0.1);
-        ASSERT(output_path[1].y == 0);
-        ASSERT(output_path[1].z == 100);
+        ASSERT2(APPROX_EQUAL(output_path[0].x, 0),   output_path[0].x);
+        ASSERT2(APPROX_EQUAL(output_path[0].y, 0),   output_path[0].y);
+        ASSERT2(APPROX_EQUAL(output_path[0].z, 100), output_path[0].z);
+        ASSERT2(APPROX_EQUAL(output_path[1].x, 0.1), output_path[1].x);
+        ASSERT2(APPROX_EQUAL(output_path[1].y, 0),   output_path[1].y);
+        ASSERT2(APPROX_EQUAL(output_path[1].z, 100), output_path[1].z);
+    }
+
+
+    {
+        std::vector<MyGeoStruct> input_geopath = {MyGeoStruct{52, 11, 100}, MyGeoStruct{53, 11, 100}};
+        std::vector<MyVecStruct> input_path;
+        auto geohome = input_geopath.front();
+        for(auto geo : input_geopath)
+        {
+            MyVecStruct enu;
+            cpp_resample_path::geo_to_enu(
+                enu.x, enu.y,
+                geo.longitude, geo.latitude,
+                geohome.longitude, geohome.latitude
+            );
+            enu.z = geo.altitude;
+            input_path.push_back(enu);
+        }
+        std::vector<MyVecStruct> output_path;
+        cpp_resample_path::resample<3,double>(
+            input_path,
+            0.1f,
+            output_path,
+            ReadVec, WriteVec,
+            0, 0.1
+        );
+        ASSERT(output_path.size() == 2);
+        ASSERT2(APPROX_EQUAL(output_path[0].x, 0),   output_path[0].x);
+        ASSERT2(APPROX_EQUAL(output_path[0].y, 0),   output_path[0].y);
+        ASSERT2(APPROX_EQUAL(output_path[0].z, 100), output_path[0].z);
+        ASSERT2(APPROX_EQUAL(output_path[1].x, 0),   output_path[1].x);
+        ASSERT2(APPROX_EQUAL(output_path[1].y, 0.1), output_path[1].y);
+        ASSERT2(APPROX_EQUAL(output_path[1].z, 100), output_path[1].z);
     }
 
     return 0;

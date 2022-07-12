@@ -125,7 +125,10 @@ function_test() {
     ctest --version
     echo ctest
     ctest || ctest --rerun-failed --output-on-failure
+    RESULT_CTEST=$?
     cd "$DIR"
+    echo RESULT_CTEST: $RESULT_CTEST
+    exit $RESULT_CTEST
 }
 function_help() {
     echo "Usage:"

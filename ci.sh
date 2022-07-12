@@ -124,7 +124,7 @@ function_test() {
     echo ctest --version
     ctest --version
     echo ctest
-    ctest
+    ctest || ctest --rerun-failed --output-on-failure
     cd "$DIR"
 }
 function_help() {

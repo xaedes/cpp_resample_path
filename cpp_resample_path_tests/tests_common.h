@@ -4,6 +4,7 @@
 #include <sstream>
 #include <vector>
 #include <array>
+#include <iomanip>
 
 #define LOG(msg) std::cout << "failed: " << (msg) << "\n";
 #define LOG2(msg, value) std::cout << "failed: " << (msg) << "\n" << (#value) << " == " << (value) << "\n";
@@ -15,6 +16,7 @@
 template<class T, std::size_t N>
 std::ostream& operator<<(std::ostream& os, const std::array<T, N>& arr)
 {
+    os << std::setprecision(6);
     os << "[";
     for (std::size_t i = 0; i < arr.size(); ++i)
     {
@@ -32,6 +34,7 @@ std::ostream& operator<<(std::ostream& os, const std::array<T, N>& arr)
 template<class... Args>
 std::ostream& operator<<(std::ostream& os, const std::vector<Args...>& vec)
 {
+    os << std::setprecision(6);
     os << "[";
     for (std::size_t i = 0; i < vec.size(); ++i)
     {

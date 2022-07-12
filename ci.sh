@@ -72,7 +72,7 @@ function_clean() {
     fi
 }
 function_tools() {
-    # echo "Preparing tools..."
+    echo "Preparing tools..."
     # if [ ! -d "$DIR/tools" ]; then
     #     mkdir -p "$DIR/tools"
     # fi

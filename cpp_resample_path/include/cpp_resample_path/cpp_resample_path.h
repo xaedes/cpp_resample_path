@@ -198,7 +198,7 @@ namespace cpp_resample_path {
             std::cout << "here_in_seg: " << here_in_seg<< "\n";
             // F k = DivFOr(here_in_seg, dist, 1);
             
-            std::cout << "k: " << k<< "\n";
+            // std::cout << "k: " << k<< "\n";
 
             const F* input_segment = input[segment];
             const F* dir_segment = dirs[segment];

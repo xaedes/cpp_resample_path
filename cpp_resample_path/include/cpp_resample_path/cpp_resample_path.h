@@ -65,7 +65,7 @@ namespace cpp_resample_path {
             }
         };
         auto DivFOr = [eps](F a, F b, F when_b_zero) {
-            return (abs(b) < eps) ? when_b_zero : (a/b);
+            return (std::abs(b) < eps) ? when_b_zero : (a/b);
         };
 
         const auto input_size = input_path.size();

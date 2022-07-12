@@ -1,5 +1,5 @@
 # cpp_resample_path
-A small library to resample a path
+A small library to resample paths
 
 
 [Build Status](https://web.martin-huenermund.de/cistatus/xaedes/cpp_resample_path)
